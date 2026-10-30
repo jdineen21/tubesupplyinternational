@@ -1,0 +1,121 @@
+-- Atlas CMS tables, reconstructed from the queries in the site code.
+-- Only used by the test harness; the real database is not touched.
+
+CREATE TABLE a_settings (
+  homeBranchId INT NOT NULL DEFAULT 0,
+  offlineBranchId INT NOT NULL DEFAULT 0,
+  offlineMode CHAR(1) NOT NULL DEFAULT 'N',
+  analyticsUA VARCHAR(50) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE a_tree (
+  branchId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  parentId INT NOT NULL DEFAULT 0,
+  type VARCHAR(50) NOT NULL DEFAULT 'page',
+  templateId INT NOT NULL DEFAULT 0,
+  title VARCHAR(255) NOT NULL DEFAULT '',
+  navTitle VARCHAR(255) NOT NULL DEFAULT '',
+  subTitle VARCHAR(255) NOT NULL DEFAULT '',
+  urlSegment VARCHAR(255) NOT NULL DEFAULT '',
+  description TEXT,
+  keywords VARCHAR(255) NOT NULL DEFAULT '',
+  menuId INT NOT NULL DEFAULT 0,
+  sortOrder INT NOT NULL DEFAULT 0,
+  allowDelete CHAR(1) NOT NULL DEFAULT 'Y',
+  dateAdded DATETIME NULL,
+  editedBy VARCHAR(255) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE a_templates (
+  templateId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  templateName VARCHAR(100) NOT NULL,
+  type VARCHAR(50) NOT NULL DEFAULT 'page',
+  allowNew CHAR(1) NOT NULL DEFAULT 'Y'
+);
+
+CREATE TABLE a_branchtypes (
+  typeId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  typeName VARCHAR(50) NOT NULL,
+  singularName VARCHAR(50) NOT NULL DEFAULT '',
+  pluralName VARCHAR(50) NOT NULL DEFAULT '',
+  orderBy VARCHAR(50) NOT NULL DEFAULT 'sortOrder',
+  orderByDirection VARCHAR(4) NOT NULL DEFAULT 'ASC',
+  sortable CHAR(1) NOT NULL DEFAULT 'N',
+  inStructure CHAR(1) NOT NULL DEFAULT 'N',
+  visibleInCMS CHAR(1) NOT NULL DEFAULT 'Y',
+  allowNew CHAR(1) NOT NULL DEFAULT 'Y',
+  allowMultiUpload CHAR(1) NOT NULL DEFAULT 'N',
+  defaultParentId INT NOT NULL DEFAULT 0,
+  defaultMenuId INT NOT NULL DEFAULT 0,
+  cmsOrder INT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE a_menus (
+  menuId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  menuName VARCHAR(100) NOT NULL,
+  maxDepth INT NOT NULL DEFAULT 1
+);
+
+CREATE TABLE a_regions (
+  regionId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  templateId INT NOT NULL DEFAULT 0,
+  regionName VARCHAR(100) NOT NULL,
+  regionType VARCHAR(50) NOT NULL DEFAULT 'text',
+  global CHAR(1) NOT NULL DEFAULT 'N',
+  repeatRegionId INT NOT NULL DEFAULT 0,
+  cmsOrder INT NOT NULL DEFAULT 0,
+  description VARCHAR(255) NOT NULL DEFAULT '',
+  parameters TEXT
+);
+
+CREATE TABLE a_content (
+  contentId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  branchId INT NOT NULL DEFAULT 0,
+  regionId INT NOT NULL DEFAULT 0,
+  repeatRegionRowId INT NOT NULL DEFAULT 0,
+  content MEDIUMTEXT,
+  parameters TEXT,
+  status VARCHAR(20) NOT NULL DEFAULT 'draft'
+);
+
+CREATE TABLE a_repeatregions (
+  repeatRegionId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  templateId INT NOT NULL DEFAULT 0,
+  regionName VARCHAR(100) NOT NULL,
+  description VARCHAR(255) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE a_repeatregionsrows (
+  rowId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  repeatRegionId INT NOT NULL DEFAULT 0,
+  templateId INT NOT NULL DEFAULT 0,
+  branchId INT NOT NULL DEFAULT 0,
+  sortOrder INT NOT NULL DEFAULT 0,
+  displayName VARCHAR(255) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE a_downloads (
+  fileId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL DEFAULT '',
+  description VARCHAR(255) NOT NULL DEFAULT '',
+  fileName VARCHAR(255) NOT NULL DEFAULT '',
+  branchId INT NOT NULL DEFAULT 0,
+  fileType VARCHAR(20) NOT NULL DEFAULT '',
+  sortOrder INT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE a_users (
+  userId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL DEFAULT '',
+  email VARCHAR(255) NOT NULL DEFAULT '',
+  password VARCHAR(255) NOT NULL DEFAULT '',
+  loginType VARCHAR(20) NOT NULL DEFAULT 'admin',
+  lastLogin DATETIME NULL
+);
+
+CREATE TABLE dev_tasks (
+  taskId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  task VARCHAR(255) NOT NULL DEFAULT '',
+  complete CHAR(1) NOT NULL DEFAULT 'N',
+  sortOrder INT NOT NULL DEFAULT 0
+);

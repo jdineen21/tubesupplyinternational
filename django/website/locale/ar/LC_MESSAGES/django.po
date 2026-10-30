@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-26 22:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+#: forms.py:23
+msgid "Code incorrect. Please enter the code again."
+msgstr "الرمز غير صحيح. يرجى إدخال الرمز مرة أخرى."
+
+#: models.py:410
+msgid "site details"
+msgstr ""
+
+#: templates/404.html:2
+msgid "Page not found"
+msgstr "الصفحة غير موجودة"
+
+#: templates/404.html:5
+msgid "404! Page not found."
+msgstr "404! الصفحة غير موجودة."
+
+#: templates/404.html:6
+msgid "Unfortunately, the page you are looking for cannot be found."
+msgstr "عذرًا، لا يمكن العثور على الصفحة التي تبحث عنها."
+
+#: templates/404.html:7
+msgid ""
+"Please navigate to a different page on this website using the navigation "
+"menu at the top of the page."
+msgstr "يرجى الانتقال إلى صفحة أخرى في هذا الموقع باستخدام قائمة التنقل أعلى الصفحة."
+
+#: templates/website/base.html:39
+msgid "Continue"
+msgstr "متابعة"
+
+#: templates/website/contact_page.html:24
+msgid "Tel:"
+msgstr "هاتف:"
+
+#: templates/website/contact_page.html:28
+msgid "Email:"
+msgstr "البريد الإلكتروني:"
+
+#: templates/website/contact_page.html:41
+msgid "Thank you for submitting your message. We will contact you shortly."
+msgstr "شكرًا لإرسال رسالتك. سنتواصل معك قريبًا."
+
+#: templates/website/contact_page.html:45
+msgid "Your name (required)"
+msgstr "اسمك (مطلوب)"
+
+#: templates/website/contact_page.html:50
+msgid "Contact Number (required)"
+msgstr "رقم الاتصال (مطلوب)"
+
+#: templates/website/contact_page.html:55
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: templates/website/contact_page.html:62
+msgid "Job Description"
+msgstr "المسمى الوظيفي"
+
+#: templates/website/contact_page.html:67
+msgid "Company Name"
+msgstr "اسم الشركة"
+
+#: templates/website/contact_page.html:72
+msgid "Country"
+msgstr "الدولة"
+
+#: templates/website/contact_page.html:79
+msgid "Your message:"
+msgstr "رسالتك:"
+
+#: templates/website/contact_page.html:90
+msgid "Please enter the code to the right:"
+msgstr "يرجى إدخال الرمز الظاهر في الصورة:"
+
+#: templates/website/contact_page.html:103
+msgid "Refresh Image"
+msgstr "تحديث الصورة"
+
+#: templates/website/contact_page.html:103
+msgid "Reload Image"
+msgstr "إعادة تحميل الصورة"
+
+#: templates/website/contact_page.html:110
+msgid "Send Message"
+msgstr "إرسال الرسالة"

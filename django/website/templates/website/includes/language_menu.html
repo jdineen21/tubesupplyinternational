@@ -1,0 +1,7 @@
+<div class="languageMenu">
+    	<div class="languageMenuInner">
+        	<ul>{% for link in links %}
+            	<li><a href="{{ link.url }}" class="{{ link.css_class }}{% if link.current %} current{% endif %}"></a></li>{% endfor %}
+            </ul>
+        </div><!-- /languageMenuInner -->
+    </div><!-- /languageMenu -->

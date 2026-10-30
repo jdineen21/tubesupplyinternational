@@ -1,0 +1,131 @@
+{% extends "website/base.html" %}{% load static wagtailcore_tags i18n %}
+{% block extra_head %}
+<script src="{% static 'frontend/js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'frontend/js/contact.js' %}"></script>
+{% endblock %}
+{% block content %}<div class="content grid_12">
+
+   	{% include_block page.header_text %}
+
+{% if page.map_url %}
+		<div style="width: 690px; margin-bottom: 33px;">
+            <iframe src="{{ page.map_url }}" width="100%" height="330" frameborder="0" style="border:0;" allowfullscreen></iframe>
+        </div>
+{% endif %}
+
+    	<div class="grid_6 alpha contactText">
+        	{% include_block page.left_column %}
+        </div><!-- grid_8 alpha -->
+
+        <div class="grid_6 omega contactText">
+
+		<table width="340" border="0" cellspacing="0" cellpadding="0" class="detailsTable">
+              <tr>
+                <td width="55"><p><strong>{% translate "Tel:" %}</strong></p></td>
+                <td width="285"><span class="ltr">{{ details.telephone }}</span></td>
+              </tr>
+              <tr>
+                <td width="55"><p><strong>{% translate "Email:" %}</strong></p></td>
+                <td width="285"><span><a href="mailto:{{ details.email }}">{{ details.email }}</a></span></td>
+              </tr>
+        </table>
+
+    	{% include_block page.right_column %}
+
+        </div><!-- grid_8 omega -->
+
+	</div><!-- end content grid_12 -->
+
+    <div class="grid_12 omega contactForm">
+
+	{% if sent %} {% translate "Thank you for submitting your message. We will contact you shortly." %} {% else %}
+
+            <form action="{% pageurl page %}" method="post" id="contactForm" class="validate">{% csrf_token %}
+                <div class="grid_4 alpha content">
+                    <p>{% translate "Your name (required)" %}</p>
+                    <input name="name" type="text" value="{{ form.name.value|default:'' }}" class="required">{% for e in form.name.errors %}<div class="errorMessage" style="color: #F00;">{{ e }}</div>{% endfor %}
+                </div><!-- END grid_4 -->
+
+                <div class="grid_4 content">
+                    <p>{% translate "Contact Number (required)" %}</p>
+                    <input name="contact" type="text" value="{{ form.contact.value|default:'' }}" class="required">{% for e in form.contact.errors %}<div class="errorMessage" style="color: #F00;">{{ e }}</div>{% endfor %}
+                </div><!-- END grid_4 -->
+
+                <div class="grid_4 omega content">
+                    <p>{% translate "Email" %}</p>
+                    <input name="email" type="text" value="{{ form.email.value|default:'' }}" class="email">{% for e in form.email.errors %}<div class="errorMessage" style="color: #F00;">{{ e }}</div>{% endfor %}
+                </div><!-- END grid_4 -->
+
+                <div class="clear"></div>
+
+                <div class="grid_4 alpha content">
+                    <p>{% translate "Job Description" %}</p>
+                    <input name="job" type="text" value="{{ form.job.value|default:'' }}">
+                </div><!-- END grid_4 -->
+
+                <div class="grid_4 content">
+                    <p>{% translate "Company Name" %}</p>
+                    <input name="company" type="text" value="{{ form.company.value|default:'' }}">
+                </div><!-- END grid_4 -->
+
+                <div class="grid_4 omega content">
+                    <p>{% translate "Country" %}</p>
+                    <input name="country" type="text" value="{{ form.country.value|default:'' }}">
+                </div><!-- END grid_4 -->
+
+                <div class="clear"></div>
+
+                <div class="grid_12 alpha omega content">
+                    <p>{% translate "Your message:" %}</p>
+                    <textarea name="message">{{ form.message.value|default:'' }}</textarea>
+              	</div><!-- end grid_12 alpha omega content -->
+
+            	<div class="clear"></div>
+
+                <div class="grid_4 alpha content">
+					{% for e in form.captcha.errors %}
+                    <div class="errorMessage" style="color: #F00;">{{ e }}</div>
+                    {% endfor %}
+
+                    <p>{% translate "Please enter the code to the right:" %}</p>
+                	<table width="340" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                    <td width="115" valign="top">{{ form.captcha }}</td>
+                    </tr></table>
+
+                </div><!-- END grid_4 -->
+
+                <div class="grid_4 content topPadding">
+
+                	<table width="216" border="0" cellspacing="0" cellpadding="0" style="background-color: #FFF;">
+                    	<tr>
+                            <td width="187" valign="top"><img id="siimage" align="left" src="{{ form.captcha.field.widget.image_url }}" alt="" /></td>
+                            <td width="29" align="right" valign="top"><a tabindex="-1" style="border-style: none; margin: 0 2px 0 0;" href="#" title="{% translate 'Refresh Image' %}" id="captcha-refresh"><img src="{% static 'frontend/images/captcha-refresh.png' %}" alt="{% translate 'Reload Image' %}" border="0" align="bottom" /></a></td>
+                        </tr>
+                    </table>
+
+                </div><!-- END grid_4 content -->
+
+                <div class="grid_4 omega content topPadding">
+                	<button type="submit" class="submitButton">{% translate "Send Message" %}</button>
+                </div><!-- END grid_4 -->
+                </form>
+                <div class="clear"></div>
+
+            {% endif %}
+
+            <br /><br /><br /><br />
+	</div><!-- END grid_12 omega -->
+<script>
+$(function () {
+	$('#captcha-refresh').click(function () {
+		$.getJSON('{% url "captcha-refresh" %}', function (data) {
+			$('#contactForm input[name="captcha_0"]').val(data.key);
+			$('#siimage').attr('src', data.image_url);
+			$('#code').val('');
+		});
+		return false;
+	});
+});
+</script>
+{% endblock %}

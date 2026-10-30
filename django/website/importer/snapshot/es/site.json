@@ -1,0 +1,82 @@
+{
+ "base_url": "http://www.tubesupplyinternational.es",
+ "fetched": "2026-10-25 16:17",
+ "pages": [
+  {
+   "path": "/",
+   "file": "_home.html"
+  },
+  {
+   "path": "/sectores-industriales",
+   "file": "sectores-industriales.html"
+  },
+  {
+   "path": "/sistemas-de-calidad",
+   "file": "sistemas-de-calidad.html"
+  },
+  {
+   "path": "/tabla-de-conversiones",
+   "file": "tabla-de-conversiones.html"
+  },
+  {
+   "path": "/contactos",
+   "file": "contactos.html"
+  },
+  {
+   "path": "/entrega-de-emergencia",
+   "file": "entrega-de-emergencia.html"
+  },
+  {
+   "path": "/products/tubos-sin-costura-trefilados-en-frio",
+   "file": "products__tubos-sin-costura-trefilados-en-frio.html"
+  },
+  {
+   "path": "/products/tubos-soldados",
+   "file": "products__tubos-soldados.html"
+  },
+  {
+   "path": "/products/tubos-u",
+   "file": "products__tubos-u.html"
+  },
+  {
+   "path": "/products/tubos-de-ajo-para-fornalla",
+   "file": "products__tubos-de-ajo-para-fornalla.html"
+  },
+  {
+   "path": "/products/tubos-helicoideas-con-aleta-alta",
+   "file": "products__tubos-helicoideas-con-aleta-alta.html"
+  },
+  {
+   "path": "/products/tubos-helicoideas-soldados-de-alta-frecuencia",
+   "file": "products__tubos-helicoideas-soldados-de-alta-frecuencia.html"
+  },
+  {
+   "path": "/products/tubos-con-aletas-incorporadas",
+   "file": "products__tubos-con-aletas-incorporadas.html"
+  },
+  {
+   "path": "/products/tubos-y-canos-tachonados",
+   "file": "products__tubos-y-canos-tachonados.html"
+  },
+  {
+   "path": "/products/tubos-con-aletas-longitudinales",
+   "file": "products__tubos-con-aletas-longitudinales.html"
+  },
+  {
+   "path": "/products/productos-asociados",
+   "file": "products__productos-asociados.html"
+  },
+  {
+   "path": "/products/tubos-de-permutacion-de-calor-en-stock",
+   "file": "products__tubos-de-permutacion-de-calor-en-stock.html"
+  },
+  {
+   "path": "/products/tubos-lisos-en-stock",
+   "file": "products__tubos-lisos-en-stock.html"
+  },
+  {
+   "path": "/products/proteccion-a-corrosion-e-fin",
+   "file": "products__proteccion-a-corrosion-e-fin.html"
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{% load static tsi_tags %}<footer>
+
+    <div class="grid_16 alpha omega">
+
+        <div class="grid_4 alpha footerBox">
+        	<div class="footerBoxHeader">
+            	<a href="{% page_url details.footer_quality_page %}"><img src="{% static 'frontend/images/footer/headerimg1.png' %}" width="32" height="32" alt="quality systems icon"/>
+                <h4>{{ details.footer_quality_heading }}</h4><span>{{ details.footer_quality_subheading }}</span></a>
+            </div><!-- END footerBoxHeader -->
+        		{{ details.footer_quality_text|safe }}
+				<p style="padding-top: 20px;"><a href="{% page_url details.footer_quality_page %}">{{ details.read_more }}</a></p>
+        </div><!-- end grid_4 alpha -->
+
+
+
+        <div class="grid_4 footerBox">
+        	<div class="footerBoxHeader">
+            	<a href="{% page_url details.footer_chart_page %}"><img src="{% static 'frontend/images/footer/headerimg2.png' %}" width="32" height="32" alt="conversion chart icon"/>
+                <h4>{{ details.footer_chart_heading }}</h4><span>{{ details.footer_chart_subheading }}</span></a>
+            </div><!-- END footerBoxHeader -->
+        		{{ details.footer_chart_text|safe }}
+				<p style="padding-top: 20px;"><a href="{% page_url details.footer_chart_page %}">{{ details.read_more }}</a></p>
+        </div><!-- end grid_4 alpha -->
+
+
+
+        <div class="grid_4 footerBox">
+        	<div class="footerBoxHeader">
+            	<a href="{% page_url details.footer_sectors_page %}"><img src="{% static 'frontend/images/footer/headerimg3.png' %}" width="32" height="32" alt="industrial sectors icon"/>
+                <h4>{{ details.footer_sectors_heading }}</h4><span>{{ details.footer_sectors_subheading }}</span></a>
+            </div><!-- END footerBoxHeader -->
+			{{ details.footer_sectors_text|safe }}
+            <p style="padding-top: 20px;"><a href="{% page_url details.footer_sectors_page %}">{{ details.read_more }}</a></p>
+        </div><!-- end grid_4 alpha -->
+
+        <div class="grid_4 omega footerBox">
+        	<div class="footerBoxHeader">
+            	<a href="{% page_url details.contact_page %}"><img src="{% static 'frontend/images/footer/headerimg4.png' %}" width="32" height="32" alt="contact details icon"/>
+                <h4>{{ details.footer_contact_heading }}</h4><span>{{ details.footer_contact_subheading }}</span></a>
+            </div><!-- END footerBoxHeader -->
+            	{{ details.footer_address|safe }}
+
+                <p><span style="color: #03509d;">{{ details.footer_telephone_label }}</span> <span class="ltr">{{ details.telephone }}</span></p>
+{% if details.footer_email_label %}                <p style="color: #03509d;">{{ details.footer_email_label }}</p>
+{% endif %}				<p style="padding-top: 0;"><a href="mailto:{{ details.email }}">{{ details.email }}</a></p>
+
+        </div><!-- end grid_4 alpha -->
+
+    </div><!-- end grid_16 alpha omega-->
+	<div class="clear"></div>
+</footer>

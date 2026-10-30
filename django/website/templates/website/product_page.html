@@ -1,0 +1,6 @@
+{% extends "website/base.html" %}{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}<div class="content grid_12">
+   	<h1>{{ page.heading_text|default:page.title }}</h1>
+    {% if page.image %}{% image page.image width-700 class="pageImg" alt=page.image_alt %}{% endif %}
+    {% include_block page.body %}
+	</div><!-- end content grid_12 -->{% endblock %}

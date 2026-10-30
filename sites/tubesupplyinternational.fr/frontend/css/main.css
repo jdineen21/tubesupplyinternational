@@ -1,0 +1,900 @@
+/*
+
+p text colour	#FFF
+
+menu text colour 		#333
+menu text hover colour	#0A4F9F
+
+form input focus	#034F9D
+
+*/
+
+
+body {
+	color: #000;
+	font-family: "open-sans", Arial, Helvetica, sans-serif;
+	background: #f0f0f0;
+	font-weight: 400;
+}
+
+p {
+	margin-bottom: 25px;
+	color: #333333;
+	line-height: 23px;
+	font-size: 100%;
+}
+
+.wrapper {
+	background-color: #FFF;
+	margin: auto;
+	width: 960px;
+	padding-left: 25px;
+	padding-top: 25px;
+}
+
+.outerFooter {
+	background-color: #FFF;
+	margin: 10px auto 0px auto;
+	width: 960px;
+	padding-left: 25px;
+	padding-top: 13px;
+	padding-bottom: 0px;
+}
+
+.outerFooter p {
+	margin-bottom: 15px;
+}
+
+a, a:link, a:visited {
+	
+}
+
+a:hover, a:active {
+
+}
+
+h1 {
+	font-size: 174%;
+	color: #999999;
+	font-weight: normal;
+	text-transform: uppercase;
+	padding-bottom: 25px;
+}
+
+.content h1 strong {
+	color: #03509d;
+	font-weight: normal;
+}
+
+h2 {
+
+}
+
+h4 {
+	color: #333333;
+	text-transform: uppercase;
+}
+
+.footerBox ul {
+	margin-left: 15px;
+	padding-top: 20px;
+}
+
+.footerBox ul li {
+	color: #636363;
+	font-size: 85%;
+	margin: 0px;
+	padding-bottom: 3px;
+	padding-left: 0px;
+}
+
+.content ul li {
+	line-height: 20px;
+}
+
+img {
+	display: block;
+}
+
+.content img {
+	display: inline;
+}
+
+.content p strong {
+	text-transform: uppercase;
+	color: #333333;
+}
+
+.content p a {
+	text-decoration:none;
+	color: #333;
+	font-weight: bold;
+}
+
+.content p a:hover {
+	color: #034F9D;
+}
+
+/* ************************************************************************************************************************************** HEADER */
+
+header {
+	position: relative;
+	height: 190px;
+}
+
+
+.contactDetails {
+	position: absolute;
+	top: 51px;
+	right: 0;
+	font-size: 93%;
+	text-align: right;
+}
+
+.contactDetails p {
+	color: #333333;
+	padding-bottom: 10px;
+	margin: 0;;
+	line-height: 16px;
+}
+
+.contactDetails p span {
+	color: #034f9d;
+	font-weight: bold;
+}
+
+.emergencyButton {
+	float: right;
+	height: 41px;
+	padding-bottom: 9px;
+	width: 115px;
+	position: absolute;
+	top: 93px;
+	right: 0px;
+}
+
+.emergencyButton a {
+	background:url(/frontend/images/header/emergency.png) left top no-repeat;
+	display: block;
+	float: right;
+	height: 41px;
+	width: 115px;
+}
+
+.emergencyButton a:hover {
+	/*background:url(/frontend/images/header/emergency_over.png) left top no-repeat;*/
+}
+
+.contactButton {
+	float: right;
+	height: 32px;
+	padding-bottom: 13px;
+	padding-right: 17px;
+	padding-top: 5px;
+	width: 118px;
+	position: absolute;
+	top: 93px;
+	right: 116px;
+}
+
+.contactButton a {
+	background:url(/frontend/images/header/contact-button.png) left top no-repeat;
+	display: block;
+	float: right;
+	height: 32px;
+	width: 118px;
+}
+
+.contactButton a:hover {
+	/*background:url(/frontend/images/header/contact-button-hover.png) left top no-repeat;*/
+}
+
+.tagline {
+	height: 90px;
+	position: absolute;
+	top: 0px;
+	left: 240px;
+	width: 400px;
+}
+
+.tagline p {
+	font-size: 116%;
+	color: #999999;
+	text-transform: uppercase;
+}
+
+.languageMenu {
+	position: absolute;
+	top: 0px;
+	right: -10px;
+	
+	height: 29px;
+}
+
+.languageMenuInner {
+	background: url(/frontend/images/header/lang-menu-bg.jpg) top left no-repeat #f0f0f0;
+	height: 29px;
+}
+
+.languageMenu ul {
+	margin-left: 6px;
+	margin-right: 10px;
+	padding-top: 4px;
+}
+
+.languageMenu li {
+	float: left;
+	list-style-type: none;
+}
+
+.languageMenu li a.flagUk {
+	background: url(/frontend/images/header/flag-uk.png) top left no-repeat;
+	display: block;
+	height: 21px;
+	width: 22px;
+}
+
+.languageMenu li a:hover.flagUk, .languageMenu li a.current.flagUk {
+	background: url(/frontend/images/header/flag-uk.png) bottom left no-repeat;
+}
+
+.languageMenu li a.flagSpain {
+	background: url(/frontend/images/header/flag-spain.png) top left no-repeat;
+	display: block;
+	height: 21px;
+	width: 22px;
+}
+
+.languageMenu li a:hover.flagSpain, .languageMenu li a.current.flagSpain {
+	background: url(/frontend/images/header/flag-spain.png) bottom left no-repeat;
+}
+
+.languageMenu li a.flagPortugal {
+	background: url(/frontend/images/header/flag-portugal.png) top left no-repeat;
+	display: block;
+	height: 21px;
+	width: 22px;
+}
+
+.languageMenu li a:hover.flagPortugal, .languageMenu li a.current.flagPortugal {
+	background: url(/frontend/images/header/flag-portugal.png) bottom left no-repeat;
+}
+
+.languageMenu li a.flagFrance {
+	background: url(/frontend/images/header/flag-france.png) top left no-repeat;
+	display: block;
+	height: 21px;
+	width: 22px;
+}
+
+.languageMenu li a:hover.flagFrance, .languageMenu li a.current.flagFrance {
+	background: url(/frontend/images/header/flag-france.png) bottom left no-repeat;
+}
+
+.languageMenu li a.flagRussia {
+	background: url(/frontend/images/header/flag-russia.png) top left no-repeat;
+	display: block;
+	height: 21px;
+	width: 22px;
+}
+
+.languageMenu li a:hover.flagRussia, .languageMenu li a.current.flagRussia {
+	background: url(/frontend/images/header/flag-russia.png) bottom left no-repeat;
+}
+
+.languageMenu li a.flagSaudiArabia {
+	background: url(/frontend/images/header/flag-saudiarabia.png) top left no-repeat;
+	display: block;
+	height: 21px;
+	width: 22px;
+}
+
+.languageMenu li a:hover.flagSaudiArabia, .languageMenu li a.current.flagSaudiArabia {
+	background: url(/frontend/images/header/flag-saudiarabia.png) bottom left no-repeat;
+}
+
+
+
+
+/* ************************************************************************************************************************************** SIDEBAR */
+
+.sidebar ul {
+	margin-left: 0;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+.sidebar ul li{
+	font-size: 85%;
+	list-style-type: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: dotted 1px #d1d1d1;
+	
+}
+
+.sidebar ul li a, .sidebar ul li a:visited {
+	display: block;
+	text-decoration: none;
+	color: #333333;
+	padding-left: 15px;
+	background: url(/frontend/images/sidebar/menu-arrow.png) left center no-repeat;
+}
+
+.sidebar ul li a:hover {
+	color: #0A4F9F;
+	background: url(/frontend/images/sidebar/menu-arrow-hover.png) left center no-repeat;
+}
+
+.sidebar ul li.current a {
+	color: #0A4F9F;
+	background: url(/frontend/images/sidebar/menu-arrow-hover.png) left center no-repeat;
+}
+
+.sidebarLink  a {
+	background: url(/frontend/images/sidebar/ukas.png) top left;
+	height: 111px;
+	width: 156px;
+	display: block;
+}
+
+.sidebarLink  a:hover {
+	background: url(/frontend/images/sidebar/ukas.png) bottom left;
+}
+
+.sidebarLink {
+	margin: 22px 0px 50px 0px;
+}
+
+.sidebarLink {
+	display: block;
+}
+
+.sidebarLink a {
+	text-decoration: none !important;
+}
+
+.sidebarLink a p {
+	color: #0A4F9F;
+	font-weight: bold;
+	line-height: 17px;
+	padding-top: 122px;
+	text-transform: uppercase;
+}
+
+.sidebarLink a:hover p {
+	color:#333;
+}
+
+/* ************************************************************************************************************************************** SIDEBAR PRODUCT BOX */
+
+.subProduct {
+	height: 61px;
+	width: 222px;
+}
+
+.subProduct img {
+	float: left;
+	height: 51px;
+	width: 62px;
+}
+
+
+.subProduct a:hover h4  {
+	color: #333;
+}
+
+.subProduct a {
+	text-decoration: none;
+}
+
+.subProduct a:hover p {
+	color: #333;
+}
+
+.subProduct h4 {
+	font-size: 85%;
+	text-transform: uppercase;
+	color: #0a4f9f;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin: 0;
+	font-weight: bold;
+}
+
+.subProduct p {
+	color: #909090;
+	font-size: 85%;
+	padding-top: 0;
+	line-height: 15px;
+}
+
+.subProductText {
+	float: left;
+	height: 37px;
+	padding-left: 10px;
+	margin-bottom: 1px;
+	padding-top: 1px;
+	width: 140px;
+}
+
+
+/* ************************************************************************************************************************************** MAIN NAV */
+
+nav {
+	position: absolute;
+	bottom: 45px;
+	right: 0px;
+	background: url(/frontend/images/header/nav-bottom.png) left bottom repeat-x;
+	width: 685px;
+	height: 37px;
+	text-align: right;
+	padding-right: 255px;
+}
+
+nav ul {
+	float: left;
+	
+}
+
+nav ul li {
+	float: left;
+	padding-right: 30px;	/* was 35px */
+	font-weight: bold;
+	text-transform: uppercase;	
+}
+
+nav ul li a {
+	display: block;
+	height: 37px;
+	text-decoration: none;
+	color: #333333;
+}
+
+nav ul li a:visited {
+	color: #333333;
+}
+
+nav ul li a:hover, nav ul li.current a {
+	color: #0a4f9f;
+	background: url(/frontend/images/header/nav-hover.png) left bottom repeat-x;
+}
+
+nav ul li span {
+	display: none; /* Hide subTible by default; */
+}
+
+/* ************************************************************************************************************************************** FOOTER */
+
+footer {
+	margin-bottom: 35px;
+	margin-top: 30px;
+}
+
+.footerBox {
+	border-top: dotted 1px #cccccc;
+	padding-top: 20px;
+	position: relative;
+}
+
+.footerBoxHeader {
+	position: relative;
+	padding-left: 40px;
+}
+
+.footerBoxHeader img {
+	height: ;
+	width: ;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.footerBoxHeader a h4 {
+	color: #333;
+	font-size: 123.1%;
+	padding: 0;
+	margin: 0;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.footerBoxHeader a {
+	text-decoration: none;
+}
+
+.footerBoxHeader a:hover h4 {
+	color: #034f9d;
+}
+
+.footerBoxHeader  a span {
+	color: #959595;
+	font-size: 85%;
+	text-decoration: none;
+}
+
+.footerBoxHeader  a:hover span {
+	color: #03509d;
+	text-decoration: none;
+}
+
+.footerBox p {
+	line-height: 20px;
+	color: #636363;
+	font-size: 85%;
+	padding-top: 20px;
+	margin-bottom: 0px;
+}
+
+.footerBox p a {
+	color: #333;
+	text-decoration: none;
+}
+
+.footerBox p a:hover {
+	color: #034f9d;
+}
+
+.outerFooterLeft {
+	float: left;
+	font-size: 85%;
+	color: #636363;
+}
+
+.outerFooter {
+	margin-bottom: 30px;
+}
+
+.outerFooterRight {
+	float: right;
+	font-size: 85%;
+	margin-right: 25px;
+	color: #636363;
+}
+
+.outerFooterRight p a {
+	text-decoration: none;
+	color: #034f9d;
+}
+
+.outerFooterRight p a:hover {
+	color: #636363;
+}
+
+/****************************************************************** TWITTER  */
+
+.tweet_text {
+	line-height: 20px;
+	color: #636363;
+	font-size: 85%;
+	padding-top: 20px;
+	margin-bottom: 0px;
+}
+
+.tweet ul {
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.tweet ul li {
+	list-style-type: none;
+	padding-top: 20px;
+}
+
+
+
+
+/* ************************************************************************************************************************************** CONTENT STYLES */
+
+.content {
+	
+}
+
+.content ul {
+	
+}
+
+.content h5 {
+	text-transform: uppercase;
+	color: #03509d;
+	font-size: 100%;
+	margin-bottom: 5px;
+}
+
+.content h4 {
+	text-transform: uppercase;
+	color: #03509d;
+	font-size: 138.5%;
+	margin-bottom: 5px;
+}
+
+
+.content em {
+	font-style: normal;
+	margin-top: 12px;
+	display: inline;
+	color: #03509d;
+	margin-top: 12px;
+}
+
+.content strong {
+	color: #333333;
+	font-weight: bold;
+	display: inline;
+}
+
+/* ************************************************************************************************************************************** HOME PAGE */
+
+.homeFeature {
+	position: relative;
+	width: 700px;
+	height: 480px;
+	padding-bottom: 13px;
+}
+
+.homeFeatureImgOverlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 162px;
+	width: 246px;
+}
+
+.homeFeatureBoxOverlay {
+	position: absolute;
+	top: 195px;
+	right: 45px;
+	height: 150px;
+	width: 300px;
+	background: url(/frontend/images/home/overlay-box-bg.png) repeat;
+}
+
+.overlayText {
+	color: #FFF;
+	text-transform: uppercase;
+	padding-top: 33px;
+	padding-right: 30px;
+	padding-left: 30px;
+	text-align: right;
+	font-size: 146.5%;
+}
+
+.overlayText strong {
+	color: #FFF;
+}
+
+.homeBrochureDownload {
+	position: absolute;
+	bottom: 51px;
+	right: 0px;
+	width: 231px;
+	height: 71px;
+}
+
+.homeBrochureDownload a {
+	background: url(/frontend/images/home/brochure.png) left top no-repeat;
+	display: block;
+	width: 231px;
+	height: 71px;
+}
+
+.homeBrochureDownload a:hover {
+	/*background: url(/frontend/images/home/brochure_over.png) left top no-repeat;*/
+}
+
+/* ************************************************************************************************************************************** PAGE */
+
+.pageImg {
+	margin-bottom: 30px;
+}
+
+/* ************************************************************************************************************************************** POPUP */
+
+.popup {
+	outline: none;
+}
+
+/* ************************************************************************************************************************************** CHART */
+
+.chartContainer {
+	position: relative;
+	background: url(/frontend/images/chart/bgimg.jpg) top right no-repeat;
+}
+
+.chartHeader {
+	border-bottom: solid 1px #b6cce3;
+	width: 550px;
+	height: 32px;
+	position: relative;
+	margin-bottom: 21px;
+}
+
+.chartHeader h1 {
+	padding-bottom: 15px;
+}
+
+.tabs {
+	background: url(/frontend/images/chart/tabs.png) top left no-repeat;
+	height: 33px;
+	width: 176px;
+	position: absolute;
+	top: 10px;
+	right: 0px;
+	cursor: pointer;
+}
+
+.tabs.swap {
+	background-position: bottom;	
+}
+
+.chartTable th {
+	background: #034f9d;
+	border-radius: 5px 5px 0px 0px;
+	font-size: 130%;
+	color: #FFF;
+}
+
+.chartTable td {
+	padding: 1px;
+}
+
+.chartTable tr:nth-child(even) {background: #FFF}
+.chartTable tr:nth-child(odd) {background: #e7e7e8}
+
+.chartTable tr:hover {
+	background: #b4cae2;
+}
+
+.chartTable .blank {
+	background: #FFF;
+}
+
+#bwg {
+	display: none;
+}
+
+
+
+
+
+.columnImage {
+	padding-left: 72px;
+}
+
+.columnImageMargin {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.contactText strong {
+	color: #03509d !important;
+	font-weight: normal !important;
+	text-transform: none !important;
+}
+
+.contactText p {
+	margin-bottom: 0px !important;
+}
+
+.contactText a {
+	font-weight: normal !important;
+}
+
+.detailsTable {
+	margin-bottom: 27px;
+}
+
+.detailsTable a {
+	text-decoration: none;
+	color: #000;
+	line-height: 20px;
+}
+
+.detailsTable a:hover {
+	color: #034F9D;
+}
+
+input {
+	border: #E7E7E7 2px solid;
+	width: 211px !important;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 30px;
+	padding-left: 5px;
+	color: #959595;
+}
+
+textarea {
+	border: #E7E7E7 2px solid;
+	width: 689px;
+	height: 100px;
+	margin-bottom: 30px;
+	resize: none;
+	padding-left: 5px;
+	color: #959595;
+}
+
+button {
+	float: right;
+	width: 120px;
+	height: 35px;
+	background-color: #034f9d;
+	border: none;
+	color: #FFF;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+	
+button:hover {
+	background-color: #959595;
+}
+
+.contactForm {
+	margin-top: 67px;
+}
+
+.contactForm p {
+	color: #959090 !important;
+	margin-bottom: 12px !important;
+}
+
+textarea:focus, input:focus {
+	border-color: #034F9D;
+	outline: none;
+}
+
+.topPadding {
+	padding-top: 35px;
+}
+
+label {
+	color: #F00;
+}
+
+input.error {
+	border-color: #F00;
+}
+
+
+/**************************************************************************************************************************************** CONTACT *************/
+#gMap {
+	width: 690px; 
+	height: 187px; 
+	/*border: 5px solid #dadada;*/
+	margin-bottom: 33px;
+}
+
+.stockChart img {
+	margin-top: 7px;
+	margin-bottom: 15px;
+}
+
+.content p strong {
+	color: #0A4F9F;
+}
+
+/*************************************************************************************************************************************** BODY IMAGE *************/
+
+.bodyImage {
+	float: left;
+}
+
+.pageSlider {
+	height: 188px;
+	margin-bottom: 35px;
+}
+
+/*************************************************************************************************************************************** PAGES *************/
+.advert {
+	position: relative;
+}
+
+.adImage {
+	float: right;
+}
+
+.adImage a img {
+	position: absolute;
+	top: -2px;
+	right: 0px;
+}

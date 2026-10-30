@@ -1,0 +1,31 @@
+{% load static tsi_tags %}<header class="grid_16">
+
+	<a href="/"><img src="{% static 'frontend/images/header/new-logo.png' %}" width="auto" height="88" alt="tube supply international logo" style="display:inline;"/></a>
+
+    <div class="clear"></div>
+
+    <div class="tagline">
+    	<p>{{ details.tagline|linebreaksbr }}<br />
+    	<span style="color: #03509d;">{{ details.tagline_highlight|linebreaksbr }}</span></p>
+    </div>
+
+	<div class="clear"></div>
+
+    {% language_menu %}
+
+    <div class="contactDetails">
+    	<p><span style="color: #054e9d;">{{ details.telephone_label }}</span> <span class="ltr">{{ details.telephone }}</span></p>
+    </div><!-- END contactDetails -->
+
+    <div class="clear"></div>
+
+	<nav>{% main_menu %}</nav>
+
+    <div class="clear"></div>
+
+    <div class="contactButton"><a href="{% page_url details.contact_page %}"></a></div>
+    <div class="emergencyButton"><a href="{% page_url details.emergency_page %}"></a></div>
+
+    <div class="clear"></div>
+
+</header>

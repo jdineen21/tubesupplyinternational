@@ -1,0 +1,28 @@
+{% extends "website/base.html" %}{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}<div class="grid_12 content">
+   	{% include_block page.header_text %}
+    <!-- slider -->
+    <div class="pageSlider">
+    {% for slide in page.slides %}
+        <div class="sliderImage">
+        {% image slide.value fill-700x187 alt=slide.value.contextual_alt_text %}
+        </div><!-- /sliderImage -->
+	{% endfor %}
+	</div><!-- /pageSlider -->
+    <!-- /slider -->
+    </div><!-- /grid_12 -->
+{% if page.side_image %}
+    <div class="content grid_4">
+        <div class="bodyImage">
+            {% image page.side_image width-220 alt="tsi" %}
+        </div>
+    </div><!-- /grid_4 -->
+
+    <div class="content grid_8">
+    {% include_block page.body %}
+	</div><!-- end content grid_8 -->
+{% else %}
+    <div class="content grid_12">
+    {% include_block page.body %}
+	</div><!-- end content grid_12 -->
+{% endif %}{% endblock %}

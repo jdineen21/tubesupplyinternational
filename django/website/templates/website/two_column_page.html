@@ -1,0 +1,13 @@
+{% extends "website/base.html" %}{% load wagtailcore_tags %}
+{% block content %}<div class="content grid_12">
+
+    	<div class="grid_6 alpha content">
+        	<h1>{{ page.heading }}</h1>
+        	{% include_block page.left_column %}
+        </div><!-- end grid_6 alpha content -->
+
+        <div class="grid_6 omega content">
+			{% include_block page.right_column %}
+        </div><!-- end grid_6 omega content -->
+
+	</div><!-- end content grid_12 -->{% endblock %}

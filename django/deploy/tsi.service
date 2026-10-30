@@ -1,0 +1,27 @@
+# systemd service for the site: /etc/systemd/system/tsi.service
+[Unit]
+Description=Tube Supply International websites (Django/Wagtail on gunicorn)
+After=network.target postgresql.service
+
+[Service]
+Type=notify
+NotifyAccess=main
+User=tsi
+Group=www-data
+# /run/tsi holds the socket nginx talks to
+RuntimeDirectory=tsi
+UMask=0007
+WorkingDirectory=/srv/tsi/app/django
+EnvironmentFile=/etc/tsi/tsi.env
+ExecStart=/srv/tsi/venv/bin/gunicorn tsi.wsgi:application \
+    --bind unix:/run/tsi/gunicorn.sock \
+    --workers 3 \
+    --timeout 120 \
+    --access-logfile - \
+    --error-logfile -
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=on-failure
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

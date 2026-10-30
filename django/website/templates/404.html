@@ -1,0 +1,10 @@
+{% extends "website/base.html" %}{% load i18n %}
+{% block title %}{% translate "Page not found" %}{% endblock %}
+{% block body %}<div class="container_16 wrapper">
+	{% include "website/includes/header.html" %}
+	<h1>{% translate "404! Page not found." %}</h1>
+    <p><strong>{% translate "Unfortunately, the page you are looking for cannot be found." %}</strong></p>
+    <p>{% translate "Please navigate to a different page on this website using the navigation menu at the top of the page." %}</p><br><br>
+	{% include "website/includes/footer.html" %}
+</div><!-- end .wrapper -->
+{% endblock %}

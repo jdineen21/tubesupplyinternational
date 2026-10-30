@@ -1,0 +1,11 @@
+{% extends "website/base.html" %}{% load wagtailcore_tags %}
+{% block content %}<div class="content grid_12">
+    	{% include_block page.intro %}
+   		<div class="chartContainer">
+        	<div class="chartHeader">
+            	<h1>{{ page.heading }}</h1>
+                <a class="tabs" href="javascript:;"></a>
+            </div><!-- end chartHeader -->
+{% include "website/includes/size_chart_tables.html" %}
+        </div><!-- end chartContainer -->
+	</div><!-- end content grid_12 -->{% endblock %}

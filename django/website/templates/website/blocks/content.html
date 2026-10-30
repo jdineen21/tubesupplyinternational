@@ -1,0 +1,2 @@
+{% load wagtailcore_tags wagtailimages_tags %}{% for block in value %}{% if block.block_type == "image" %}{% image block.value original alt=block.value.contextual_alt_text %}{% else %}{% include_block block %}{% endif %}
+{% endfor %}

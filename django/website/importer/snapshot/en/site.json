@@ -1,0 +1,82 @@
+{
+ "base_url": "https://www.tubesupplyinternational.co.uk",
+ "fetched": "2026-10-25 16:16",
+ "pages": [
+  {
+   "path": "/",
+   "file": "_home.html"
+  },
+  {
+   "path": "/sectors",
+   "file": "sectors.html"
+  },
+  {
+   "path": "/quality-systems",
+   "file": "quality-systems.html"
+  },
+  {
+   "path": "/size-conversion-chart",
+   "file": "size-conversion-chart.html"
+  },
+  {
+   "path": "/contact-us",
+   "file": "contact-us.html"
+  },
+  {
+   "path": "/emergency-delivery",
+   "file": "emergency-delivery.html"
+  },
+  {
+   "path": "/products/seamless-cold-drawn-tubes",
+   "file": "products__seamless-cold-drawn-tubes.html"
+  },
+  {
+   "path": "/products/welded-tubes",
+   "file": "products__welded-tubes.html"
+  },
+  {
+   "path": "/products/u-tubes",
+   "file": "products__u-tubes.html"
+  },
+  {
+   "path": "/products/alloy-steel-furnace-tubes",
+   "file": "products__alloy-steel-furnace-tubes.html"
+  },
+  {
+   "path": "/products/helical-high-finned-tubes",
+   "file": "products__helical-high-finned-tubes.html"
+  },
+  {
+   "path": "/products/high-frequency-helical-finned-tubes",
+   "file": "products__high-frequency-helical-finned-tubes.html"
+  },
+  {
+   "path": "/products/integrally-finned-tubes",
+   "file": "products__integrally-finned-tubes.html"
+  },
+  {
+   "path": "/products/studded-tube-and-pipe",
+   "file": "products__studded-tube-and-pipe.html"
+  },
+  {
+   "path": "/products/longitudinal-finned-tubes",
+   "file": "products__longitudinal-finned-tubes.html"
+  },
+  {
+   "path": "/products/associated-products",
+   "file": "products__associated-products.html"
+  },
+  {
+   "path": "/products/stock-heat-exchanger-tubes",
+   "file": "products__stock-heat-exchanger-tubes.html"
+  },
+  {
+   "path": "/products/plain-stock-tubes",
+   "file": "products__plain-stock-tubes.html"
+  },
+  {
+   "path": "/products/corrosion-protection-e-fin",
+   "file": "products__corrosion-protection-e-fin.html"
+  }
+ ]
+}

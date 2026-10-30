@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /500.html
+Disallow: /admin
+Sitemap: https://www.tubesupplyinternational.co.uk/sitemap.xml

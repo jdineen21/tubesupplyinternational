@@ -1,0 +1,82 @@
+{
+ "base_url": "http://www.tubesupplyinternational.fr",
+ "fetched": "2026-10-25 16:17",
+ "pages": [
+  {
+   "path": "/",
+   "file": "_home.html"
+  },
+  {
+   "path": "/secteurs-industriels",
+   "file": "secteurs-industriels.html"
+  },
+  {
+   "path": "/systemes-qualite",
+   "file": "systemes-qualite.html"
+  },
+  {
+   "path": "/tableau-de-conversion",
+   "file": "tableau-de-conversion.html"
+  },
+  {
+   "path": "/contactez-nous",
+   "file": "contactez-nous.html"
+  },
+  {
+   "path": "/livraison-durgence",
+   "file": "livraison-durgence.html"
+  },
+  {
+   "path": "/products/tubes-sans-soudure-etires-a-froid",
+   "file": "products__tubes-sans-soudure-etires-a-froid.html"
+  },
+  {
+   "path": "/products/tubes-soudes",
+   "file": "products__tubes-soudes.html"
+  },
+  {
+   "path": "/products/tubes-en-u",
+   "file": "products__tubes-en-u.html"
+  },
+  {
+   "path": "/products/tubes-pour-four-en-acier-allie",
+   "file": "products__tubes-pour-four-en-acier-allie.html"
+  },
+  {
+   "path": "/products/tubes-a-hautes-ailettes-en-helice",
+   "file": "products__tubes-a-hautes-ailettes-en-helice.html"
+  },
+  {
+   "path": "/products/tubes-a-ailettes-en-helice-soudees-haute-frequence",
+   "file": "products__tubes-a-ailettes-en-helice-soudees-haute-frequence.html"
+  },
+  {
+   "path": "/products/tubes-integralement-a-ailettes",
+   "file": "products__tubes-integralement-a-ailettes.html"
+  },
+  {
+   "path": "/products/tubes-et-tuyaux-cloutes",
+   "file": "products__tubes-et-tuyaux-cloutes.html"
+  },
+  {
+   "path": "/products/tubes-a-ailettes-longitudinales",
+   "file": "products__tubes-a-ailettes-longitudinales.html"
+  },
+  {
+   "path": "/products/produits-associes",
+   "file": "products__produits-associes.html"
+  },
+  {
+   "path": "/products/tubes-standards-pour-echangeurs-de-chaleur",
+   "file": "products__tubes-standards-pour-echangeurs-de-chaleur.html"
+  },
+  {
+   "path": "/products/tubes-standard",
+   "file": "products__tubes-standard.html"
+  },
+  {
+   "path": "/products/protection-contre-la-corrosion-e-ailettes",
+   "file": "products__protection-contre-la-corrosion-e-ailettes.html"
+  }
+ ]
+}

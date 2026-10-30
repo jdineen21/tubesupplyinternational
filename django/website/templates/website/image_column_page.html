@@ -1,0 +1,32 @@
+{% extends "website/base.html" %}{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}<!-- start MAIN CONENT-->
+   	<div class="grid_12 omega">
+
+        <div class="content grid_12 alpha omega">
+        <h1>{{ page.heading }}</h1>
+        {% if page.image %}{% image page.image width-700 class="pageImg" alt=page.image_alt %}{% endif %}
+
+        <div class="grid_8 alpha">
+        {% include_block page.intro %}
+        </div><!-- /grid_6 alpha omega -->
+
+        <div class="grid_4 omega advert">
+{% if page.advert_image %}        	<div class="adImage">{% if page.advert_link and page.advert_link.live %}<a href="{% pageurl page.advert_link %}">{% endif %}{% image page.advert_image original alt="e fin advert tsi" %}{% if page.advert_link and page.advert_link.live %}</a>{% endif %}</div><!-- /adImage -->
+{% endif %}        </div><!-- /grid_6 alpha omega -->
+
+        </div><!-- end content grid_12 -->
+
+        <div class="clear"></div>
+
+        <div class="grid_12 alpha content columnImageMargin" style="margin-bottom: 5px;">{% include_block page.full_width_text %}</div><!-- end grid_12 omega content -->
+{% for row, text_style, image_style in styled_rows %}
+        <div class="clear"></div>
+
+        <div class="grid_6 alpha content columnImageMargin"{% if text_style %} style="{{ text_style }}"{% endif %}>{% include_block row.value.text %}</div><!-- end grid_6 alpha -->
+        <div class="grid_6 omega content columnImageMargin"{% if image_style %} style="{{ image_style }}"{% endif %}>{% if row.value.image %}{% image row.value.image max-340x500 class="columnImage" alt=row.value.image.contextual_alt_text %}{% endif %}</div><!-- end grid_6 omega -->
+{% endfor %}
+	</div>
+    <!-- end grid_12 MAIN CONENT-->
+{% endblock %}
+{# the old template has no clearing div before the footer #}
+{% block clear_before_footer %}{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "website/base.html" %}{% load static wagtailcore_tags %}
+{% block content %}<div class="content grid_12">
+
+		<div class="homeFeature">
+            <video autoplay width="700" height="360" loop>
+              <source src="{% static 'frontend/video/home.mp4' %}" type="video/mp4">
+              <source src="{% static 'frontend/video/home.webm' %}" type="video/webm">
+              <img src="{% static 'frontend/video/home.jpg' %}" width="700" height="360" alt="home video screenshot of tubes"/>
+            </video>
+			<img src="{% static 'frontend/images/home/pipes.png' %}" class="homeFeatureImgOverlay" alt="pipes image tsi" />
+		</div><!-- END homeFeature -->
+
+    {% include_block page.header_text %}
+    {% include_block page.body %}
+
+	</div><!-- end grid_12 -->{% endblock %}

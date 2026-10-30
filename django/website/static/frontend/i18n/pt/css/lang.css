@@ -1,0 +1,4 @@
+/* pt: images with words on them, in this language */
+.contactButton a { background-image: url(../images/header/contact-button.png); }
+.emergencyButton a { background-image: url(../images/header/emergency.png); }
+.homeBrochureDownload a { background-image: url(../images/home/brochure.png); }

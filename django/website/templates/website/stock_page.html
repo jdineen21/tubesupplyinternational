@@ -1,0 +1,25 @@
+{% extends "website/base.html" %}{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}<div class="content grid_12">
+   	<h1>{{ page.heading }}</h1>
+    {% if page.image %}{% image page.image width-700 class="pageImg" alt=page.image_alt %}{% endif %}
+    {% include_block page.body %}
+
+	<div class="content grid_12 alpha omega">
+    	{% include_block page.intro %}
+	</div><!-- end content grid_12 -->
+
+    <!-- left column text -->
+    <div class="grid_6 alpha content">
+    	{% include_block page.left_column %}
+    </div><!-- end grid_6 alpha -->
+    <!-- end left column text -->
+
+    <!-- right column text -->
+    <div class="grid_6 omega content">
+    	{% include_block page.right_column %}
+    </div><!-- end grid_6 omega -->
+    <!-- end right column text -->
+{% if page.chart_image %}
+    <div class="stockChart">{% image page.chart_image width-700 alt="" %}</div><!-- end stockChart -->
+{% endif %}
+	</div><!-- end content grid_12 -->{% endblock %}

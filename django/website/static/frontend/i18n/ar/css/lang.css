@@ -1,0 +1,71 @@
+/* ar: the Saudi Arabia site reads right to left. The layout of the other
+   sites (main.css, 960_16_col.css) is mirrored here. */
+
+/* Arabic letters: the sites' Typekit font has none */
+body, h1, h2, h3, h4, h5, h6, p, li, td, th, a, span, input, textarea, button {
+	font-family: "Noto Sans Arabic", open-sans, Tahoma, Arial, sans-serif;
+}
+/* words in capitals do not exist in Arabic; letter shapes need the room */
+.tagline p, nav ul li, .content h1, .content h4, .content h5 {
+	text-transform: none;
+}
+
+/* pictures with words on them, in Arabic (tools/make_arabic_images.py) */
+.contactButton a { background-image: url(../images/header/contact-button.png); }
+.emergencyButton a { background-image: url(../images/header/emergency.png); }
+
+/* the grid: columns run from the right */
+[dir=rtl] .grid_1, [dir=rtl] .grid_2, [dir=rtl] .grid_3, [dir=rtl] .grid_4,
+[dir=rtl] .grid_5, [dir=rtl] .grid_6, [dir=rtl] .grid_7, [dir=rtl] .grid_8,
+[dir=rtl] .grid_9, [dir=rtl] .grid_10, [dir=rtl] .grid_11, [dir=rtl] .grid_12,
+[dir=rtl] .grid_13, [dir=rtl] .grid_14, [dir=rtl] .grid_15, [dir=rtl] .grid_16 {
+	float: right;
+}
+[dir=rtl] .alpha { margin-left: 10px; margin-right: 0; }
+[dir=rtl] .omega { margin-right: 10px; margin-left: 0; }
+[dir=rtl] .alpha.omega { margin-left: 0; margin-right: 0; }
+[dir=rtl] .wrapper, [dir=rtl] .outerFooter { padding-left: 0; padding-right: 25px; }
+
+/* header */
+[dir=rtl] .tagline { left: auto; right: 240px; }
+[dir=rtl] .languageMenu { right: auto; left: -10px; }
+[dir=rtl] .languageMenu li { float: right; }
+[dir=rtl] .contactDetails { right: auto; left: 0; text-align: left; }
+[dir=rtl] .emergencyButton { right: auto; left: 0; float: left; }
+[dir=rtl] .contactButton { right: auto; left: 116px; float: left; padding-right: 0; padding-left: 17px; }
+[dir=rtl] .emergencyButton a, [dir=rtl] .contactButton a { float: left; }
+[dir=rtl] nav { right: auto; left: 0; text-align: left; padding-right: 0; padding-left: 255px; }
+[dir=rtl] nav ul { float: right; }
+[dir=rtl] nav ul li { float: right; padding-right: 0; padding-left: 30px; }
+
+/* left column (now on the right) */
+[dir=rtl] .sidebar ul { margin-right: 0; }
+[dir=rtl] .sidebar ul li a, [dir=rtl] .sidebar ul li a:visited {
+	padding-left: 0; padding-right: 15px;
+	background: url(../images/sidebar/menu-arrow.png) right center no-repeat;
+}
+[dir=rtl] .sidebar ul li a:hover, [dir=rtl] .sidebar ul li.current a {
+	background: url(../images/sidebar/menu-arrow-hover.png) right center no-repeat;
+}
+[dir=rtl] .subProduct img, [dir=rtl] .subProductText { float: right; }
+[dir=rtl] .subProductText { padding-left: 0; padding-right: 10px; }
+
+/* footer */
+[dir=rtl] .footerBoxHeader { padding-left: 0; padding-right: 40px; }
+[dir=rtl] .footerBoxHeader img { left: auto; right: 0; }
+[dir=rtl] .footerBox ul { margin-left: 0; margin-right: 15px; }
+[dir=rtl] .outerFooterLeft { float: right; }
+[dir=rtl] .outerFooterRight { float: left; margin-right: 0; margin-left: 25px; }
+
+/* page content */
+[dir=rtl] .tabs { right: auto; left: 0; }
+[dir=rtl] .chartHeader h1 { text-align: right; }
+[dir=rtl] .columnImage { padding-left: 0; padding-right: 72px; }
+[dir=rtl] input, [dir=rtl] textarea { padding-left: 0; padding-right: 5px; }
+[dir=rtl] button { float: left; }
+[dir=rtl] .bodyImage { float: right; }
+[dir=rtl] .advert { float: left; }  /* (its picture is positioned, so the box has no height) */
+[dir=rtl] .adImage { float: left; }
+[dir=rtl] .adImage a img, [dir=rtl] .adImage > img { right: auto; left: 0; }
+/* telephone numbers and email addresses read left to right */
+[dir=rtl] .ltr { direction: ltr; unicode-bidi: embed; }

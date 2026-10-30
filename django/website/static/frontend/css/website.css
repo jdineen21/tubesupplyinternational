@@ -1,0 +1,15 @@
+/* Additions for the Wagtail version of the site */
+
+/* An empty paragraph keeps the height of a line, as the old editor's
+   "<p>&nbsp;</p>" did: pressing Enter twice in the editor leaves a gap. */
+.content p:empty::before,
+.sidebar p:empty::before {
+	content: "\00a0";
+}
+
+/* The advert keeps its place when it does not link anywhere */
+.adImage > img {
+	position: absolute;
+	top: -2px;
+	right: 0px;
+}

@@ -1,0 +1,1 @@
+{% load wagtailcore_tags %}<ul class="">{% for item in items %}<li id="navItem-{{ item.id }}" class="{% if current and current.id == item.id %}current{% endif %}"><a href="{% pageurl item %}">{{ item.title }}</a></li>{% endfor %}</ul>
