@@ -6,7 +6,7 @@ set -euo pipefail
 dir=/srv/tsi/backups
 day=$(date +%Y-%m-%d)
 mkdir -p "$dir"
-chmod 700 "$dir"  # the database dump holds the admin users' password hashes
-runuser -u postgres -- pg_dump --format=custom tsi > "$dir/tsi-$day.dump"
+chmod 700 "$dir"  # the database holds the admin users' password hashes
+/srv/tsi/app/django/deploy/manage.sh backup_database | gzip > "$dir/tsi-$day.sqlite3.gz"
 tar -czf "$dir/media-$day.tar.gz" -C /srv/tsi media
 find "$dir" -type f -mtime +14 -delete

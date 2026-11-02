@@ -163,13 +163,16 @@ take the place of the translated ones.
 
 ## Setting up the server
 
-For Ubuntu 24.04 (or Debian 12); other Linux systems are similar. The
-site needs Python 3.12 or later, PostgreSQL and nginx. Everything lives in
-`/srv/tsi`:
+For Rocky Linux 8.10 (RHEL 8 and AlmaLinux 8 are the same). The site
+needs Python 3.12 or later, nginx, and SQLite 3.37 or later for its
+database. Rocky 8's own SQLite (3.26) is too old for Django, so step 1
+installs Python with [uv](https://docs.astral.sh/uv/): its Python comes
+with a current SQLite. Everything lives in `/srv/tsi`:
 
 ```
 /srv/tsi/app       this repository (django/.env: passwords and settings, not in git)
-/srv/tsi/venv      the Python packages
+/srv/tsi/db        the database (one SQLite file)
+/srv/tsi/venv      the Python packages (Python itself is in /srv/tsi/.local, from uv)
 /srv/tsi/media     pictures and documents uploaded in the admin
 /srv/tsi/static    stylesheets, scripts and fixed pictures (collected)
 /srv/tsi/backups   daily backups
@@ -178,34 +181,71 @@ site needs Python 3.12 or later, PostgreSQL and nginx. Everything lives in
 1. **Packages and a user for the site**
 
    ```
-   sudo apt install python3 python3-venv postgresql nginx certbot git
-   sudo useradd --system --home-dir /srv/tsi --create-home --shell /usr/sbin/nologin --gid www-data tsi
-   sudo mkdir -p /srv/tsi/media /srv/tsi/static
+   sudo dnf update
+   sudo dnf module enable nginx:1.24
+   sudo dnf install nginx git epel-release
+   sudo dnf install certbot
+   curl -L https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-unknown-linux-gnu.tar.gz \
+       | sudo tar -xz -C /usr/local/bin --strip-components=1
+   sudo useradd --system --home-dir /srv/tsi --create-home --shell /sbin/nologin --gid nginx tsi
+   sudo chmod 755 /srv/tsi
+   sudo mkdir -p /srv/tsi/media /srv/tsi/static /srv/tsi/db
    sudo git clone --branch main https://github.com/YordalStun/PhpUpgrade.git /srv/tsi/app
-   sudo chown -R tsi:www-data /srv/tsi
-   sudo -u tsi python3 -m venv /srv/tsi/venv
+   sudo chown -R tsi:nginx /srv/tsi
+   sudo chmod 700 /srv/tsi/db
+   sudo -u tsi /usr/local/bin/uv python install 3.12
+   sudo -u tsi /usr/local/bin/uv venv --seed --python 3.12 /srv/tsi/venv
    sudo -u tsi /srv/tsi/venv/bin/pip install -r /srv/tsi/app/django/requirements.txt
    ```
+
+   certbot comes from EPEL, which `epel-release` adds. uv puts Python in
+   the site user's home (`/srv/tsi/.local`). The site's user is in nginx's
+   group, so nginx can reach the site and read the uploaded files. Rocky
+   makes a new home folder private to its owner, hence the `chmod 755`;
+   the database folder stays private to the site's user.
 
    The repository is private: give the server a GitHub deploy key (or
    clone with a token). Use the branch this work has been merged into.
 
-2. **Database**
+2. **The firewall, and SELinux if it is enforcing.** If firewalld is on
+   (`sudo firewall-cmd --state`), open the web ports:
 
    ```
-   sudo -u postgres createuser tsi --pwprompt
-   sudo -u postgres createdb tsi --owner tsi
+   sudo firewall-cmd --permanent --add-service=http --add-service=https
+   sudo firewall-cmd --reload
    ```
+
+   The SELinux labels below are needed only if `getenforce` says
+   `Enforcing`: without them systemd cannot start the site
+   (`status=203/EXEC`) and nginx cannot reach it (502) or serve the
+   pictures and PDFs (403). With SELinux `Permissive` the site works
+   without them; adding them anyway is harmless, keeps those refusals out
+   of the audit log, and means switching SELinux to enforcing later will
+   not break the site.
+
+   ```
+   sudo dnf install policycoreutils-python-utils
+   sudo semanage fcontext -a -t bin_t "/srv/tsi/venv/bin(/.*)?"
+   sudo semanage fcontext -a -t bin_t "/srv/tsi/\.local/share/uv/python(/.*)?"
+   sudo semanage fcontext -a -t httpd_var_run_t "/var/run/tsi(/.*)?"
+   sudo semanage fcontext -a -t httpd_sys_content_t "/srv/tsi/(static|media)(/.*)?"
+   sudo semanage fcontext -a -t httpd_sys_content_t "/srv/tsi/app/django/downloads(/.*)?"
+   sudo restorecon -R /srv/tsi
+   ```
+
+   (`/var/run/tsi` is `/run/tsi`, where gunicorn's socket is; SELinux
+   wants the old name.) If something is still refused,
+   `sudo ausearch -m avc -ts recent` shows what.
 
 3. **Settings.** Copy `.env.example` to `.env` (both next to `manage.py`),
-   fill in the secret key, the database password and the mail server, and
-   make it readable by the `tsi` user only (the site reads it itself):
+   fill in the secret key and the mail server, and make it readable by
+   the `tsi` user only (the site reads it itself):
 
    ```
    cd /srv/tsi/app/django
    sudo cp .env.example .env
    sudo nano .env
-   sudo chown tsi:www-data .env
+   sudo chown tsi:nginx .env
    sudo chmod 600 .env
    ```
 
@@ -213,11 +253,14 @@ site needs Python 3.12 or later, PostgreSQL and nginx. Everything lives in
    `git clean -x` would delete it).
 
    The contact forms need a way to send mail: a mail server on the machine
-   (e.g. postfix) or an external one (`EMAIL_HOST`, `EMAIL_PORT`,
-   `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, `EMAIL_USE_TLS=1`).
+   (`sudo dnf install postfix && sudo systemctl enable --now postfix`, and
+   the mail settings in `.env.example` work as they are) or an external one
+   (`EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`,
+   `EMAIL_USE_TLS=1`).
 
 4. **Build the database and the sites.** `deploy/manage.sh` runs a
-   `manage.py` command with the live settings, as the `tsi` user:
+   `manage.py` command with the live settings, as the `tsi` user
+   (`migrate` creates the database file):
 
    ```
    cd /srv/tsi/app/django
@@ -253,14 +296,13 @@ site needs Python 3.12 or later, PostgreSQL and nginx. Everything lives in
        -d tubesupplyinternational.pt -d www.tubesupplyinternational.pt \
        -d tubesupplyinternational.ru -d www.tubesupplyinternational.ru \
        -d tubesupplyinternational.sa.com -d www.tubesupplyinternational.sa.com
-   sudo cp deploy/nginx.conf /etc/nginx/sites-available/tubesupplyinternational
-   sudo ln -s /etc/nginx/sites-available/tubesupplyinternational /etc/nginx/sites-enabled/
-   sudo rm -f /etc/nginx/sites-enabled/default
-   sudo nginx -t && sudo systemctl reload nginx
+   sudo cp deploy/nginx.conf /etc/nginx/conf.d/tubesupplyinternational.conf
+   sudo nginx -t && sudo systemctl enable nginx && sudo systemctl restart nginx
+   sudo systemctl enable --now certbot-renew.timer
    ```
 
-   certbot renews the certificate by itself (with the same hooks). If the
-   server has no IPv6, remove the `listen [::]…` lines from the nginx file.
+   The timer renews the certificate (with the same hooks). If the server
+   has no IPv6, remove the `listen [::]…` lines from the nginx file.
 
 7. **Backups**: add `deploy/backup.sh` to root's crontab (`sudo crontab -e`):
 
@@ -268,8 +310,18 @@ site needs Python 3.12 or later, PostgreSQL and nginx. Everything lives in
    20 3 * * * /srv/tsi/app/django/deploy/backup.sh
    ```
 
-   It keeps 14 days of database dumps and uploaded files in
-   `/srv/tsi/backups`. Copy them off the server as well.
+   It keeps 14 days of database copies and uploaded files in
+   `/srv/tsi/backups`. Copy them off the server as well. (The database
+   copy is made with `manage.py backup_database`, which is safe while the
+   site is running; do not just copy the database file.)
+
+On Ubuntu or Debian the steps are the same apart from: `apt install
+python3 python3-venv nginx certbot git` in step 1, and
+`sudo -u tsi python3 -m venv /srv/tsi/venv` instead of uv (their own
+SQLite is new enough); no step 2; nginx's group is `www-data` (in step 1,
+step 3 and `Group=` in `deploy/tsi.service`); and the nginx file goes in
+`/etc/nginx/sites-available/`, linked from `sites-enabled/`, with certbot
+renewing by itself.
 
 ## Switching over from the old sites
 
@@ -296,12 +348,23 @@ sudo /srv/tsi/app/django/deploy/update.sh
 pulls the repository, installs changed packages, updates the database and
 static files and restarts the site without dropping requests.
 
-To restore a backup:
+Python itself comes from uv, not from `dnf`, so `dnf update` does not
+update it. To move to the latest Python 3.12 release (the site's packages
+carry on working; nothing needs reinstalling):
+
+```
+sudo -u tsi /usr/local/bin/uv python upgrade 3.12
+sudo systemctl restart tsi
+```
+
+To restore a backup (removing the `-wal` and `-shm` files matters: they
+belong to the database being replaced):
 
 ```
 sudo systemctl stop tsi
-sudo -u postgres dropdb tsi && sudo -u postgres createdb tsi --owner tsi
-sudo cat /srv/tsi/backups/tsi-DATE.dump | sudo -u postgres pg_restore --dbname tsi
+sudo rm -f /srv/tsi/db/tsi.sqlite3-wal /srv/tsi/db/tsi.sqlite3-shm
+sudo sh -c 'gunzip -c /srv/tsi/backups/tsi-DATE.sqlite3.gz > /srv/tsi/db/tsi.sqlite3'
+sudo chown tsi:nginx /srv/tsi/db/tsi.sqlite3
 sudo tar -xzf /srv/tsi/backups/media-DATE.tar.gz -C /srv/tsi
 sudo systemctl start tsi
 ```
@@ -347,10 +410,15 @@ names: `import_old_sites --replace --hostname es=es.localhost …`.
   edits and publishes a page, uploads a picture into it, edits a site's
   details, and checks each change on the public sites.
 
-The deployment files were tried out on a test machine with PostgreSQL 16,
-nginx 1.24 and gunicorn: redirects for all the names, every page over
-https, static files, uploads, the old PDFs, the contact form with its
-captcha, and the backup script.
+The setup steps were tried out on a Rocky Linux 8.10 test machine
+(firewalld on; SELinux enforcing with the labels, and permissive without
+them) with Python 3.12 and SQLite 3.53 from uv, nginx 1.24 and gunicorn,
+and a stand-in certificate instead of certbot's: redirects for all the
+names, every page over https, static files, uploads, the old PDFs, the
+contact form with its captcha, saving pages while 12 visitors at a time
+used the sites, the backup and the restore, a Python upgrade, and a
+restart of the machine. (Before that, with PostgreSQL, on Ubuntu 24.04
+too.)
 
 ## How it is built
 

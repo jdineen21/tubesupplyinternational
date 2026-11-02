@@ -1,13 +1,14 @@
 # systemd service for the site: /etc/systemd/system/tsi.service
 [Unit]
 Description=Tube Supply International websites (Django/Wagtail on gunicorn)
-After=network.target postgresql.service
+After=network.target
 
 [Service]
 Type=notify
 NotifyAccess=main
 User=tsi
-Group=www-data
+# nginx's group, so nginx can use the socket and read the uploaded files
+Group=nginx
 # /run/tsi holds the socket nginx talks to
 RuntimeDirectory=tsi
 UMask=0007

@@ -81,8 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "tsi.wsgi.application"
 
-# PostgreSQL in production (DATABASE_NAME etc. from the environment);
-# SQLite when DATABASE_NAME is not set, for trying the site out locally.
+# An SQLite file (SQLITE_PATH), or PostgreSQL when DATABASE_NAME etc. are set.
 if env("DATABASE_NAME"):
     DATABASES = {
         "default": {
@@ -100,7 +99,15 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "NAME": Path(env("SQLITE_PATH", BASE_DIR / "db.sqlite3")),
+            # Several server processes share the file: WAL lets pages be read
+            # while something is being saved, and IMMEDIATE with a timeout makes
+            # a second save wait its turn instead of failing "database is locked".
+            "OPTIONS": {
+                "init_command": "PRAGMA journal_mode=WAL",
+                "transaction_mode": "IMMEDIATE",
+                "timeout": 20,
+            },
         }
     }
 
