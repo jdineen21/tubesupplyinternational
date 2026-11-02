@@ -6,3 +6,4 @@ psycopg[binary]==3.3.6
 gunicorn==26.2.0
 beautifulsoup4==4.15.0
 pillow==13.0.0
+python-dotenv==1.2.4

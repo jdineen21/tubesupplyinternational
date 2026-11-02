@@ -11,8 +11,8 @@ Group=www-data
 # /run/tsi holds the socket nginx talks to
 RuntimeDirectory=tsi
 UMask=0007
+# the settings are in /srv/tsi/app/django/.env, which tsi/wsgi.py reads
 WorkingDirectory=/srv/tsi/app/django
-EnvironmentFile=/etc/tsi/tsi.env
 ExecStart=/srv/tsi/venv/bin/gunicorn tsi.wsgi:application \
     --bind unix:/run/tsi/gunicorn.sock \
     --workers 3 \

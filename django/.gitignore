@@ -6,4 +6,3 @@ __pycache__/
 /collected-static/
 tsi/settings/local.py
 *.env
-!deploy/*.env.example

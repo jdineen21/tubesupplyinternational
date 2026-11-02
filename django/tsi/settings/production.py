@@ -1,12 +1,13 @@
-"""Production settings. Everything secret comes from the environment
-(see deploy/tsi.env.example), so nothing secret is kept in git."""
+"""Production settings. Everything secret comes from the environment, which
+manage.py and wsgi.py fill from .env (see .env.example), so nothing secret
+is kept in git."""
 from .base import *  # noqa: F401,F403
 from .base import env, env_list
 
 DEBUG = False
 SECRET_KEY = env("SECRET_KEY")
 if not SECRET_KEY:
-    raise RuntimeError("SECRET_KEY is not set (see deploy/tsi.env.example)")
+    raise RuntimeError("SECRET_KEY is not set (see .env.example)")
 
 ALLOWED_HOSTS = env_list(
     "ALLOWED_HOSTS",

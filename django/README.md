@@ -168,12 +168,11 @@ site needs Python 3.12 or later, PostgreSQL and nginx. Everything lives in
 `/srv/tsi`:
 
 ```
-/srv/tsi/app       this repository
+/srv/tsi/app       this repository (django/.env: passwords and settings, not in git)
 /srv/tsi/venv      the Python packages
 /srv/tsi/media     pictures and documents uploaded in the admin
 /srv/tsi/static    stylesheets, scripts and fixed pictures (collected)
 /srv/tsi/backups   daily backups
-/etc/tsi/tsi.env   passwords and settings (not in git)
 ```
 
 1. **Packages and a user for the site**
@@ -198,16 +197,20 @@ site needs Python 3.12 or later, PostgreSQL and nginx. Everything lives in
    sudo -u postgres createdb tsi --owner tsi
    ```
 
-3. **Settings.** Copy `deploy/tsi.env.example` to `/etc/tsi/tsi.env`, fill
-   in the secret key, the database password and the mail server, and make
-   it private:
+3. **Settings.** Copy `.env.example` to `.env` (both next to `manage.py`),
+   fill in the secret key, the database password and the mail server, and
+   make it readable by the `tsi` user only (the site reads it itself):
 
    ```
-   sudo mkdir -p /etc/tsi
-   sudo cp /srv/tsi/app/django/deploy/tsi.env.example /etc/tsi/tsi.env
-   sudo nano /etc/tsi/tsi.env
-   sudo chmod 600 /etc/tsi/tsi.env
+   cd /srv/tsi/app/django
+   sudo cp .env.example .env
+   sudo nano .env
+   sudo chown tsi:www-data .env
+   sudo chmod 600 .env
    ```
+
+   `.env` is ignored by git, so `deploy/update.sh` leaves it alone (but
+   `git clean -x` would delete it).
 
    The contact forms need a way to send mail: a mail server on the machine
    (e.g. postfix) or an external one (`EMAIL_HOST`, `EMAIL_PORT`,
@@ -352,7 +355,7 @@ captcha, and the backup script.
 ## How it is built
 
 ```
-tsi/settings/            base.py (shared), dev.py, production.py (from /etc/tsi/tsi.env)
+tsi/settings/            base.py (shared), dev.py, production.py (from .env)
 website/models.py        page types, Site details, contact form messages
 website/templates/       the old PHP templates as Django templates
 website/static/frontend/ the old sites' stylesheets, scripts and pictures;
