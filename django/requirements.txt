@@ -1,6 +1,6 @@
 # The versions tested; install with: pip install -r requirements.txt
-Django==6.1.2
-wagtail==8.0.1
+Django==5.2.18
+wagtail==7.4.4
 django-simple-captcha==0.7.0
 psycopg[binary]==3.3.6
 gunicorn==26.2.0

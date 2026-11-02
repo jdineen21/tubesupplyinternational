@@ -164,7 +164,7 @@ take the place of the translated ones.
 ## Setting up the server
 
 For Rocky Linux 8.10 (RHEL 8 and AlmaLinux 8 are the same). The site
-needs Python 3.12 or later, nginx, and SQLite 3.37 or later for its
+needs Python 3.12 or later, nginx, and SQLite 3.31 or later for its
 database. Rocky 8's own SQLite (3.26) is too old for Django, so step 1
 installs Python with [uv](https://docs.astral.sh/uv/): its Python comes
 with a current SQLite. Everything lives in `/srv/tsi`:
@@ -371,6 +371,11 @@ sudo systemctl start tsi
 
 Wagtail and Django publish security releases; update `requirements.txt` to
 the new versions, run the tests, and deploy with `update.sh`.
+
+The site uses the long-term-support releases: Wagtail 7.4 has security
+releases until 2 November 2027 and Django 5.2 until April 2028. Before
+November 2027, move to Wagtail 8.3, the next long-term-support release
+(due May 2027).
 
 ## Development and testing
 
